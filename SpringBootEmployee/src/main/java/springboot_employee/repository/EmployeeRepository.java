@@ -7,5 +7,5 @@ import springboot_employee.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-
+	
 }
