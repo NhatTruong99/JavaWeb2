@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact Management System</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class = "container ">
+		<h1 align="center">Contact List</h1>
+		  <form th:action="@{/search}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Tìm kiếm theo tên" size="50" >
+  <button type="submit" class="btn btn-info" >Search</button>
+  <button type="submit" class="btn btn-info" >Reset</button>
+  </form>
+		<a th:href = "@{/showNewContactForm}" class = "btn btn-info m-2"> Add Contact</a>
+		<table border="1" class="table table-striped">
+			<thead>
+				<tr>
+					<th> Contact Name</th> 
+					<th> Contact Email</th> 
+					<th> Contact Phone</th>
+					<th> Contact Facebook</th>
+					<th> Contact Avatar</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each = "contact : ${listContacts}">
+					<td th:text = "${contact.name}"></td>
+					<td th:text = "${contact.email}"></td>
+					<td th:text = "${contact.phone}"></td>
+					<td th:text = "${contact.facebook}"></td>
+					<td th:text = "${contact.avatar}"></td>
+					<td>
+					<a th:href = "@{/showFormForUpdate/{id}(id=${contact.id})}" class="btn btn-primary">Update</a>
+					<a th:href = "@{/deleteContact/{id}(id=${contact.id})}" class="btn btn-danger">Delete</a>
+					
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+		
+		
+	</div>
+</body>
+</html>
